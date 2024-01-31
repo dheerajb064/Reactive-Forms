@@ -12,14 +12,14 @@ export class FormComponent {
     firstName:['' ,[Validators.required,Validators.maxLength(20)]],
     middleName:[''],
     lastName:['',[Validators.required ,Validators.maxLength(20)]],
-    age:['',[Validators.pattern('^(1[0-9]|[2-4][0-9]|50)$')]],
+    age:['',[Validators.required,Validators.pattern('^(1[0-9]|[2-4][0-9]|50)$')]],
     gender:['',Validators.required],
     address: this.formBuilder.group({
       street:['',[Validators.required,Validators.maxLength(20)]],
       landmark:['',Validators.maxLength(20)],
       city:['',[Validators.required,Validators.maxLength(20)]],
       state:['',[Validators.required,Validators.maxLength(20)]],
-      zipCode:['',[Validators.required ,Validators.pattern(/^\d{1,20}$/)]],
+      zipCode:['',[Validators.required ,Validators.pattern('^[0-9]*$') ,Validators.maxLength(20)]],
       country: ['',[Validators.required ,Validators.maxLength(20)]],
 
     }),

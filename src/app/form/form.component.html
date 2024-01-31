@@ -1,75 +1,90 @@
-<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
-    <div>
+<div class="form-container">
+  <h2 class="form-title">Registration Form</h2>
+  <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
       <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" formControlName="firstName">
+      <input type="text" id="firstName" formControlName="firstName" />
+      <div *ngIf="detailsForm.get('firstName')?.errors?.['required'] && detailsForm.get('firstName')?.touched" class="error-message">First Name is required !</div>
+      <div *ngIf="detailsForm.get('firstName')?.errors?.['maxlength'] && detailsForm.get('firstName')?.touched" class="error-message">First Name cannot exceed 20 characters !</div>
     </div>
-  
-    <div>
-      <label for="middleName">Middle Name:</label>
-      <input type="text" id="middleName" formControlName="middleName">
+    
+    <div class="form-group">
+        <label for="middleName">Middle Name:</label>
+        <input type="text" id="middleName" formControlName="middleName" />
     </div>
-  
-    <div>
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" formControlName="lastName">
-      </div>
-  
-    <div>
-      <label for="age">Age:</label>
-      <input type="text" id="age" formControlName="age">
-      </div>
-  
-    <div>
-      <label for="gender">Gender:</label>
-      <select id="gender" formControlName="gender">
-        <option value="" disabled>Select</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-     </div>
-  
+    
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" formControlName="lastName" />
+        <div *ngIf="detailsForm.get('lastName')?.errors?.['required'] && detailsForm.get('lastName')?.touched" class="error-message">First Name is required !</div>
+        <div *ngIf="detailsForm.get('lastName')?.errors?.['maxlength'] && detailsForm.get('lastName')?.touched" class="error-message">Last Name cannot exceed 20 characters !</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="text" id="age" formControlName="age" />
+        <div *ngIf="detailsForm.get('age')?.hasError('pattern') && detailsForm.get('age')?.touched" class="error-message">Age must be a number & between 10 and 50 !</div>
+        <div *ngIf="detailsForm.get('age')?.errors?.['required'] && detailsForm.get('age')?.touched" class="error-message">Age is required !</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" formControlName="gender">
+            <option value="" disabled>Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <div *ngIf="detailsForm.get('gender')?.errors?.['required'] && detailsForm.get('gender')?.touched" class="error-message">Gender is required !</div>
+    </div>
+    
     <div formGroupName="address">
-      <div>
-        <label for="street">Street:</label>
-        <input type="text" id="street" formControlName="street">
+        <div class="form-group">
+            <label for="street">Street:</label>
+            <input type="text" id="street" formControlName="street" />
+            <div *ngIf="detailsForm.get('address')?.get('street')?.errors?.['required'] && detailsForm.get('address')?.get('street')?.touched" class="error-message">Street is required !</div>
         </div>
-  
-      <div>
-        <label for="landmark">Landmark:</label>
-        <input type="text" id="landmark" formControlName="landmark">
+        
+        <div class="form-group">
+            <label for="landmark">Landmark:</label>
+            <input type="text" id="landmark" formControlName="landmark" />
+            <div *ngIf="detailsForm.get('address')?.get('landmark')?.errors?.['maxlength'] && detailsForm.get('address')?.get('landmark')?.touched" class="error-message">Landmark cannot exceed 20 characters !</div>
         </div>
-  
-      <div>
-        <label for="city">City:</label>
-        <input type="text" id="city" formControlName="city">
+        
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" formControlName="city" />
+            <div *ngIf="detailsForm.get('address')?.get('city')?.errors?.['required'] && detailsForm.get('address')?.get('city')?.touched" class="error-message">City is required !</div>
         </div>
-  
-      <div>
-        <label for="state">State:</label>
-        <input type="text" id="state" formControlName="state">
+        
+        <div class="form-group">
+            <label for="state">State:</label>
+            <input type="text" id="state" formControlName="state" />
+            <div *ngIf="detailsForm.get('address')?.get('state')?.errors?.['required'] && detailsForm.get('address')?.get('state')?.touched" class="error-message">State is required !</div>
         </div>
-  
-      <div>
-        <label for="zipCode">Zip Code:</label>
-        <input type="text" id="zipCode" formControlName="zipCode">
+        
+        <div class="form-group">
+            <label for="zipCode">Zip Code:</label>
+            <input type="text" id="zipCode" formControlName="zipCode" />
+            <div *ngIf="detailsForm.get('address')?.get('zipCode')?.hasError('pattern') && detailsForm.get('address')?.get('zipCode')?.touched" class="error-message">Zip Code must be a number !</div>
+            <div *ngIf="detailsForm.get('address')?.get('zipCode')?.errors?.['maxlength'] && detailsForm.get('address')?.get('zipCode')?.touched" class="error-message">Zip Code must contain max 20 digits !</div>
         </div>
-  
-      <div>
-        <label for="country">Country:</label>
-        <input type="text" id="country" formControlName="country">
-        </div>
+        
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" formControlName="country" />
+            <div *ngIf="detailsForm.get('address')?.get('country')?.errors?.['required'] && detailsForm.get('address')?.get('country')?.touched" class="error-message">Country is required !</div>
     </div>
-  
-    <div formArrayName="hobbies">
+</div>
 
-      <div *ngFor="let hobby of hobbies.controls; let i = index">
-        <label for="hobby-{{i}}">Hobby:</label>
-        <input type="text" id="hobby-{{i}}" [formControlName]="i">
+<div formArrayName="hobbies">
+    <div *ngFor="let hobby of hobbies.controls; let i = index" class="form-group">
+        <label for="hobby-{{ i }}">Hobby:</label>
+        <input type="text" id="hobby-{{ i }}" [formControlName]="i" />
       </div>
-      <button type="button" (click)="addHobby()">Add Hobby</button>
+      <button type="button" (click)="addHobby()" class="btn btn-primary">Add Hobby</button>
     </div>
-  
-    <button type="submit" [disabled]="detailsForm.invalid">Submit</button>
+
+    <button type="submit" [disabled]="detailsForm.invalid" class="btn btn-primary">Submit</button>
   </form>
-  
+</div>
