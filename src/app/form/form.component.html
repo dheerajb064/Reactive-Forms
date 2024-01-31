@@ -1,0 +1,75 @@
+<form [formGroup]="detailsForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" formControlName="firstName">
+    </div>
+  
+    <div>
+      <label for="middleName">Middle Name:</label>
+      <input type="text" id="middleName" formControlName="middleName">
+    </div>
+  
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" formControlName="lastName">
+      </div>
+  
+    <div>
+      <label for="age">Age:</label>
+      <input type="text" id="age" formControlName="age">
+      </div>
+  
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" formControlName="gender">
+        <option value="" disabled>Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+     </div>
+  
+    <div formGroupName="address">
+      <div>
+        <label for="street">Street:</label>
+        <input type="text" id="street" formControlName="street">
+        </div>
+  
+      <div>
+        <label for="landmark">Landmark:</label>
+        <input type="text" id="landmark" formControlName="landmark">
+        </div>
+  
+      <div>
+        <label for="city">City:</label>
+        <input type="text" id="city" formControlName="city">
+        </div>
+  
+      <div>
+        <label for="state">State:</label>
+        <input type="text" id="state" formControlName="state">
+        </div>
+  
+      <div>
+        <label for="zipCode">Zip Code:</label>
+        <input type="text" id="zipCode" formControlName="zipCode">
+        </div>
+  
+      <div>
+        <label for="country">Country:</label>
+        <input type="text" id="country" formControlName="country">
+        </div>
+    </div>
+  
+    <div formArrayName="hobbies">
+
+      <div *ngFor="let hobby of hobbies.controls; let i = index">
+        <label for="hobby-{{i}}">Hobby:</label>
+        <input type="text" id="hobby-{{i}}" formControlName="i">
+      </div>
+      <button type="button" (click)="addHobby()">Add Hobby</button>
+    </div>
+  
+    <button type="submit" [disabled]="detailsForm.invalid">Submit</button>
+  </form>
+  
